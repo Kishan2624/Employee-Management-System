@@ -1,0 +1,19 @@
+mysql-connector-python
+# Employee Management System
+
+## Overview
+The Employee Management System is a simple console-based application that allows users to manage employee records. Users can add, view, update, and delete employee information through an interactive command-line interface. This project uses Python and connects to a MySQL database for data storage.
+
+## Features
+- Add new employees
+- View all employees
+- Update existing employee details
+- Delete employees
+- User-friendly command-line interface
+
+## Technologies Used
+- Python 3.x
+- MySQL
+- mysql-connector-python
+
+## Folder Structure
