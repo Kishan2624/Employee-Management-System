@@ -1,6 +1,6 @@
 host = "localhost"
 user = "root"
-password = "your_password"
+password = "12345"
 database = "EmployeeDB"
 
 DB_CONFIG = {
