@@ -263,8 +263,8 @@ class Employee:
             cursor = connection.cursor()
 
             # SQL query to fetch employees sorted by joining date
-            # Assuming the column name is 'joining_date'
-            query = "SELECT * FROM employees ORDER BY joining_date ASC"
+            # Assuming the column name is 'hire_date'
+            query = "SELECT * FROM employees ORDER BY hire_date ASC"
             cursor.execute(query)
 
             # Fetch all employees sorted by joining date
@@ -296,8 +296,8 @@ class Employee:
             employee = cursor.fetchone()
 
             if employee is None:
-                raise ValueError(
-                    f"Error: No employee found with ID: {employee_id}")
+                print(f"Error: No employee found with ID: {employee_id}")
+                return
 
             return employee  # Return employee details as a tuple
 
@@ -309,21 +309,23 @@ class Employee:
 
     @staticmethod
     def get_employees_by_title(position):
-        """Retrieve and return a list of employees by their position."""
+        """
+        Retrieve and return a list of employees by their position.
+        """
         try:
             connection = create_connection()
             cursor = connection.cursor()
 
             # SQL query to find employees by position
-            query = "SELECT * FROM employees WHERE position = %s"
+            query = "SELECT * FROM employees WHERE position LIKE %s"
             cursor.execute(query, (position,))
 
             # Fetch all matching employees
             employees = cursor.fetchall()
 
             if not employees:
-                raise ValueError(
-                    f"Error: No employees found with position: {position}")
+                print(f"Error: No employees found with position: {position}")
+                return
 
             return employees  # Return a list of employees as tuples
 
@@ -341,16 +343,15 @@ class Employee:
             cursor = connection.cursor()
 
             # SQL query to find employees by department
-            query = "SELECT * FROM employees WHERE department = %s"
+            query = "SELECT * FROM employees WHERE department LIKE %s"
             cursor.execute(query, (department,))
 
             # Fetch all matching employees
             employees = cursor.fetchall()
 
             if not employees:
-                raise ValueError(
-                    f"Error: No employees found in department: {department}")
-
+                print(f"Error: No employees found in department: {department}")
+                return
             return employees  # Return a list of employees as tuples
 
         except Exception as err:
@@ -367,7 +368,7 @@ class Employee:
             cursor = connection.cursor()
 
             # SQL query to count employees by department
-            query = "SELECT COUNT(*) FROM employees WHERE department = %s"
+            query = "SELECT COUNT(*) FROM employees WHERE department LIKE %s"
             cursor.execute(query, (department,))
 
             # Fetch the count result
